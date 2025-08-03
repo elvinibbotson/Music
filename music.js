@@ -330,8 +330,9 @@ async function scanArtist(name) {
 		else {
 			// addTrack(entry,name);
 			var song={};
-			song.artist=name;
-			song.title=entry.name;
+			// song.artist=name;
+			song.artist=entry.name.substring(0,entry.name.indexOf('~'));
+			song.title=entry.name.substring(entry.name.indexOf('~'+1));
 			// track.link=entry;
 			console.log(song.title+'/'+song.artist);
 			songs.push(song);
