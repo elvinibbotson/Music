@@ -202,7 +202,7 @@ function listSongs() {
 function load() {
 	var  data=window.localStorage.getItem('music');
 	if(!data) {
-		// show('scanDialog');
+		show('scanDialog');
 		return;
 	}
 	var json=JSON.parse(data);
@@ -238,14 +238,19 @@ function playSong() {
 	// SHOW TRACK DETAILS - TITLE, ARTIST, ALBUM PLUS PLAY, ADD TO PLAYLIST AND DELETE BUTTONS
 	// var path=handle0+'/Music/'+tracks[index].artist+'/'+tracks[index].title;
 	// console.log('link: '+songs[index].link);
+	/*
 	var blob=window.URL;
 	var file=songs[index].data;
 	report(file);
 	report(file.name);
 	report(file.type);
-	var url=blob.createObjectURL(file);
+	var url=URL.createObjectURL(file);
 	report('url');
 	id('player').src=url;
+	*/
+	var path='songs/'+songs[index].artist+'~'+songs[index].title;
+	console.log('play '+path);
+	id('player').src=path;
 	id('player').play();
 }
 
@@ -283,7 +288,7 @@ function save() {
 }
 
 async function scan() {
-	tracks=[];
+	songs=[];
 	// links=[];
 	artists=[];
 	albums=[];
@@ -324,12 +329,12 @@ async function scanArtist(name) {
 		}
 		else {
 			// addTrack(entry,name);
-			var track={};
-			track.artist=name;
-			track.title=entry.name;
+			var song={};
+			song.artist=name;
+			song.title=entry.name;
 			// track.link=entry;
-			console.log(track.title+'/'+track.artist);
-			tracks.push(track);
+			console.log(song.title+'/'+song.artist);
+			songs.push(song);
 			// console.log('link: '+entry.name+' - '+entry.kind);
 			// links.push(entry);
 		}
