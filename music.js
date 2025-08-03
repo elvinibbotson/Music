@@ -41,12 +41,13 @@ id('list').addEventListener('touchend', function(event) {
 })
 
 async function addSong() {
-	// id('player').src="/storage/070D-4726/Music/4 Non Blondes/What's Up.mp3";
-	// id('player').play();
-
+	id('player').src="/storage/070D-4726/Music/4 Non Blondes/What's Up.mp3";
+	id('player').play();
+	/*
 	files=await addSongSelect();
 	await addSongSave(files[0]);
 	save();
+	*/
 }
 
 async function addSongSelect() {
