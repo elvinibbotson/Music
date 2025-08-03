@@ -74,11 +74,11 @@ async function addSongSelect() {
 async function addSongSave(file) {
 	var title=file.name.substring(0,file.name.indexOf('.'));
 	console.log('save song '+title+' '+file.size+' bytes');
-	console.log('content: '+file.text);
+	console.log('content: '+file.value);
 	var song={};
 	song.type='file';
 	song.title=title;
-	song.data=file;
+	song.data=file.value;
 	songs.push(song);
 }
 			/*
@@ -238,13 +238,17 @@ function playSong() {
 	// console.log('link: '+songs[index].link);
 	var blob=window.URL;
 	var file=songs[index].data;
-	console.log(file);
-	console.log(file.name);
-	console.log(file.type);
+	report(file);
+	report(file.name);
+	report(file.type);
 	var url=blob.createObjectURL(file);
-	console.log('url');
+	report('url');
 	id('player').src=url;
 	id('player').play();
+}
+
+function report(text) {
+	id('feedback').innerHTML+='<br>'+text;
 }
 
 function previous() {
